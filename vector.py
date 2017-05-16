@@ -19,3 +19,15 @@ class Vector(object):
 
     def __eq__(self, v):
         return self.coordinates == v.coordinates
+
+    def plus(self,v):
+        new_coordinates = [x+y for x,y in zip(self.coordinates, v.coordinates)]
+        return Vector(new_coordinates)
+
+    def minus(self,v):
+        new_coordinates = [x-y for x,y in zip(self.coordinates, v.coordinates)]
+        return Vector(new_coordinates)
+
+    def times_scalar(self, v):
+        new_coordinates = [v*x for x in self.coordinates]
+        return Vector(new_coordinates)
