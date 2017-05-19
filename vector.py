@@ -1,3 +1,6 @@
+from math import sqrt
+from decimal import Decimal, getcontext
+
 class Vector(object):
     def __init__(self, coordinates):
         try:
@@ -31,3 +34,35 @@ class Vector(object):
     def times_scalar(self, v):
         new_coordinates = [v*x for x in self.coordinates]
         return Vector(new_coordinates)
+
+    def magnitude(self):
+        coordinates_squared = [x**2 for x in self.coordinates]
+        return sqrt(sum(coordinates_squared))
+
+    def normalized(self):
+        try:
+            magnitude = self.magnitude()
+            return self.times_scalar(Decimal('1.0')/magnitude)
+
+        except ZeroDivisionError:
+            raise Exception(self.CANNOT_NORMALIZE_ZERO_VECTOR_MSG)
+
+    def dot_product(self,v):
+        return sum([x*y for x,y in zip(self.coordinates, v.coordinates)])
+
+    def angle_with(self,v,in_degrees=False):
+        try:
+            u1 = self.normalized()
+            u2 = v.normalized()
+            angle_in_radians = acos(u1.dot(u2))
+
+            if in_degrees:
+                degrees_per_radian = 180. / pi
+                return angle_in_radians * degrees_per_radian
+            else:
+                return angle_in_radians
+
+        except Exception as e:
+            if str(e) == self.CANNOT_NORMALIZE_ZERO_VECTOR_MSG:
+                raise Exception('Cannot computer angle with zero vector')
+            else: raise e
