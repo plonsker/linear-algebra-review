@@ -64,5 +64,5 @@ class Vector(object):
 
         except Exception as e:
             if str(e) == self.CANNOT_NORMALIZE_ZERO_VECTOR_MSG:
-                raise Exception('Cannot computer angle with zero vector')
+                raise Exception('Cannot compute angle with zero vector')
             else: raise e
