@@ -1,6 +1,8 @@
 from vector import Vector
 
-p = Vector([-5.955,-4.904,-1.874])
-q = Vector([-4.496,-8.755,7.103])
+v = Vector([-2.238, -7.284,-1.214])
+w = Vector([-1.821,1.072,-2.94])
 
-print p.dot_product(q)
+print v.times_scalar(w)
+
+# print v.dot_product(w)

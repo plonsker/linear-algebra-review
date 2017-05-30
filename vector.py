@@ -66,3 +66,16 @@ class Vector(object):
             if str(e) == self.CANNOT_NORMALIZE_ZERO_VECTOR_MSG:
                 raise Exception('Cannot compute angle with zero vector')
             else: raise e
+
+    def is_orthogonal_to(self, v, tolerance=1e-10):
+        return abs(self.dot(v)) < tolerance
+
+    def is_parallel_to(self, v):
+        return (self.is_zero() or
+                v.is_zero() or
+                self.angle_with(v) == 0 or
+                self.angle_with(v) == pi)
+        )
+
+    def is_zero(self, tolerance=1e-10):
+        return self.magnitude()<tolerance
