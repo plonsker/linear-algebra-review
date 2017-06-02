@@ -65,7 +65,8 @@ class Vector(object):
         except Exception as e:
             if str(e) == self.CANNOT_NORMALIZE_ZERO_VECTOR_MSG:
                 raise Exception('Cannot compute angle with zero vector')
-            else: raise e
+            else:
+                raise e
 
     def is_orthogonal_to(self, v, tolerance=1e-10):
         return abs(self.dot(v)) < tolerance
